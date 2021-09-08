@@ -1,0 +1,50 @@
+<template>
+    <div class="container slds-box slds-theme_default">
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item padding="around-small" size="12">
+                <div class="slds-text-heading_large">OMDb API</div>
+                <div class="slds-text-heading_medium">The Open Movie Database</div>
+                <div class="page-section page-header slds-p-top_medium">
+                    <div onkeyup={handleKeyUp}>
+                        <lightning-input
+                            onchange={handleChange}
+                            name="enter-search"
+                            label="Buscar una pelicula"
+                            type="search"
+                        ></lightning-input>
+                    </div>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="6" class="slds-is-relative">
+                <template if:true={isLoading}>
+                    <lightning-spinner
+                    alternative-text="Loading"
+                    size="small"
+                    ></lightning-spinner>
+                </template>
+                <template if:true={movies}>
+                    <lightning-layout multiple-rows="true" class="movies">
+                        <template for:each={movies} for:item="movie">
+                            <lightning-layout-item key={movie.imdbID} flexibility="auto" padding="around-small" size="3">
+                                <c-omdb-movie-card movie={movie} onmovieclick={handleShowMovie}></c-omdb-movie-card>
+                            </lightning-layout-item>
+                        </template>
+                        
+                    </lightning-layout>
+                </template>
+                <template if:false={movies}>
+                    <c-illustration template="empty" title="Sin pelis" subtitle="Por favor realiza una busqueda!"></c-illustration>
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="6" class="slds-is-relative" if:true={movie}>
+                <template if:true={requestingMovie}>
+                    <lightning-spinner
+                    alternative-text="Loading"
+                    size="small"
+                    ></lightning-spinner>
+                </template>
+                <c-omdb-movie-detail movie={movie}></c-omdb-movie-detail>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>

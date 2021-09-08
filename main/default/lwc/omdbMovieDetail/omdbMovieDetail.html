@@ -1,0 +1,31 @@
+<template>
+    <lightning-layout multiple-rows="true">
+        <lightning-layout-item size="5" padding="around-small">
+            <img width="100%" src={movie.Poster}>
+        </lightning-layout-item>
+        <lightning-layout-item size="7" padding="around-small">
+            <div class="slds-text-heading_large">{movie.Title}</div>
+            <p class="slds-p-top_medium">{movie.Plot}</p>
+            <div class="slds-p-top_medium">
+                <table cellspacing="5px" align="left">    
+                    <tr>    
+                        <td align="right" style="width: 20%;"><strong>Director: </strong></td>    
+                        <td>{movie.Director}</td>    
+                    </tr>   
+                    <tr>    
+                        <td align="right" style="width: 20%;"><strong>Idioma: </strong></td>    
+                        <td>{movie.Language}</td>    
+                    </tr>   
+                    <tr>    
+                        <td align="right" style="width: 20%;"><strong>Géneros: </strong></td>    
+                        <td>{movie.Genre}</td>    
+                    </tr> 
+                    <tr>    
+                        <td align="right" style="width: 20%;"><strong>Duración: </strong></td>    
+                        <td>{movie.Runtime}</td>    
+                    </tr>   
+                </table>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
